@@ -8,10 +8,11 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <link rel="stylesheet" href="css/leaflet.css">
         <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
         <style>
         #map {
-            width: 2190px;
-            height: 1652px;
+            width: 500x;
+            height: 500px;
         }
         </style>
         <title></title>
@@ -28,6 +29,7 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
         <script src="data/IndigenousAveragebyElectorate202120BinsLite_0.js"></script>
         <script>
         var highlightLayer;
@@ -46,8 +48,8 @@
             }
             highlightLayer.openPopup();
         }
-        var map = L.map('map', {
-            zoomControl:true, maxZoom:28, minZoom:1
+        var map = L.map('map').setView([147.6091,-33.1508], {
+            zoomControl:true, maxZoom:28, minZoom:2
         })
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
@@ -57,6 +59,7 @@
             if (bounds_group.getLayers().length) {
                 map.fitBounds(bounds_group.getBounds());
             }
+            map.setMaxBounds(map.getBounds());
         }
         function pop_IndigenousAveragebyElectorate202120BinsLite_0(feature, layer) {
             layer.on({
@@ -87,7 +90,7 @@
         }
 
         function style_IndigenousAveragebyElectorate202120BinsLite_0_0(feature) {
-            if (feature.properties['Indigenous'] >= 0.000000 && feature.properties['Indigenous'] <= 0.542857 ) {
+            if (feature.properties['Indigenous'] >= 0.000000 && feature.properties['Indigenous'] <= 2.360345 ) {
                 return {
                 pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
                 opacity: 1,
@@ -98,11 +101,11 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(252,251,253,1.0)',
+                fillColor: 'rgba(237,235,244,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['Indigenous'] >= 0.542857 && feature.properties['Indigenous'] <= 0.911111 ) {
+            if (feature.properties['Indigenous'] >= 2.360345 && feature.properties['Indigenous'] <= 4.720690 ) {
                 return {
                 pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
                 opacity: 1,
@@ -113,11 +116,11 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(247,245,250,1.0)',
+                fillColor: 'rgba(227,223,236,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['Indigenous'] >= 0.911111 && feature.properties['Indigenous'] <= 1.240000 ) {
+            if (feature.properties['Indigenous'] >= 4.720690 && feature.properties['Indigenous'] <= 7.081034 ) {
                 return {
                 pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
                 opacity: 1,
@@ -128,11 +131,11 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(241,240,247,1.0)',
+                fillColor: 'rgba(217,210,228,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['Indigenous'] >= 1.240000 && feature.properties['Indigenous'] <= 1.800000 ) {
+            if (feature.properties['Indigenous'] >= 7.081034 && feature.properties['Indigenous'] <= 9.441379 ) {
                 return {
                 pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
                 opacity: 1,
@@ -143,11 +146,11 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(234,233,243,1.0)',
+                fillColor: 'rgba(207,198,220,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['Indigenous'] >= 1.800000 && feature.properties['Indigenous'] <= 2.750000 ) {
+            if (feature.properties['Indigenous'] >= 9.441379 && feature.properties['Indigenous'] <= 11.801724 ) {
                 return {
                 pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
                 opacity: 1,
@@ -158,11 +161,11 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(226,225,239,1.0)',
+                fillColor: 'rgba(197,186,213,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['Indigenous'] >= 2.750000 && feature.properties['Indigenous'] <= 3.712821 ) {
+            if (feature.properties['Indigenous'] >= 11.801724 && feature.properties['Indigenous'] <= 14.162069 ) {
                 return {
                 pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
                 opacity: 1,
@@ -173,11 +176,11 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(217,217,235,1.0)',
+                fillColor: 'rgba(187,173,205,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['Indigenous'] >= 3.712821 && feature.properties['Indigenous'] <= 4.075000 ) {
+            if (feature.properties['Indigenous'] >= 14.162069 && feature.properties['Indigenous'] <= 16.522414 ) {
                 return {
                 pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
                 opacity: 1,
@@ -188,11 +191,11 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(205,206,229,1.0)',
+                fillColor: 'rgba(177,161,197,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['Indigenous'] >= 4.075000 && feature.properties['Indigenous'] <= 5.819964 ) {
+            if (feature.properties['Indigenous'] >= 16.522414 && feature.properties['Indigenous'] <= 18.882759 ) {
                 return {
                 pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
                 opacity: 1,
@@ -203,11 +206,11 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(193,194,222,1.0)',
+                fillColor: 'rgba(167,148,189,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['Indigenous'] >= 5.819964 && feature.properties['Indigenous'] <= 6.563333 ) {
+            if (feature.properties['Indigenous'] >= 18.882759 && feature.properties['Indigenous'] <= 21.243103 ) {
                 return {
                 pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
                 opacity: 1,
@@ -218,11 +221,11 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(181,181,215,1.0)',
+                fillColor: 'rgba(157,136,181,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['Indigenous'] >= 6.563333 && feature.properties['Indigenous'] <= 7.909091 ) {
+            if (feature.properties['Indigenous'] >= 21.243103 && feature.properties['Indigenous'] <= 23.603448 ) {
                 return {
                 pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
                 opacity: 1,
@@ -233,11 +236,11 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(169,166,207,1.0)',
+                fillColor: 'rgba(147,124,173,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['Indigenous'] >= 7.909091 && feature.properties['Indigenous'] <= 9.190909 ) {
+            if (feature.properties['Indigenous'] >= 23.603448 && feature.properties['Indigenous'] <= 25.963793 ) {
                 return {
                 pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
                 opacity: 1,
@@ -248,11 +251,11 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(157,153,199,1.0)',
+                fillColor: 'rgba(137,111,166,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['Indigenous'] >= 9.190909 && feature.properties['Indigenous'] <= 11.142857 ) {
+            if (feature.properties['Indigenous'] >= 25.963793 && feature.properties['Indigenous'] <= 28.324138 ) {
                 return {
                 pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
                 opacity: 1,
@@ -263,11 +266,11 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(144,141,194,1.0)',
+                fillColor: 'rgba(127,99,158,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['Indigenous'] >= 11.142857 && feature.properties['Indigenous'] <= 12.177713 ) {
+            if (feature.properties['Indigenous'] >= 28.324138 && feature.properties['Indigenous'] <= 30.684483 ) {
                 return {
                 pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
                 opacity: 1,
@@ -278,11 +281,11 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(132,129,188,1.0)',
+                fillColor: 'rgba(117,87,150,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['Indigenous'] >= 12.177713 && feature.properties['Indigenous'] <= 13.443137 ) {
+            if (feature.properties['Indigenous'] >= 30.684483 && feature.properties['Indigenous'] <= 33.044828 ) {
                 return {
                 pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
                 opacity: 1,
@@ -293,11 +296,11 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(120,110,178,1.0)',
+                fillColor: 'rgba(107,74,142,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['Indigenous'] >= 13.443137 && feature.properties['Indigenous'] <= 15.666667 ) {
+            if (feature.properties['Indigenous'] >= 33.044828 && feature.properties['Indigenous'] <= 35.405172 ) {
                 return {
                 pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
                 opacity: 1,
@@ -308,11 +311,11 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(109,87,166,1.0)',
+                fillColor: 'rgba(97,62,134,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['Indigenous'] >= 15.666667 && feature.properties['Indigenous'] <= 16.677578 ) {
+            if (feature.properties['Indigenous'] >= 35.405172 && feature.properties['Indigenous'] <= 37.765517 ) {
                 return {
                 pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
                 opacity: 1,
@@ -323,11 +326,11 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(100,70,158,1.0)',
+                fillColor: 'rgba(87,49,126,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['Indigenous'] >= 16.677578 && feature.properties['Indigenous'] <= 17.380000 ) {
+            if (feature.properties['Indigenous'] >= 37.765517 && feature.properties['Indigenous'] <= 40.125862 ) {
                 return {
                 pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
                 opacity: 1,
@@ -338,11 +341,11 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(92,55,151,1.0)',
+                fillColor: 'rgba(77,37,119,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['Indigenous'] >= 17.380000 && feature.properties['Indigenous'] <= 19.440000 ) {
+            if (feature.properties['Indigenous'] >= 40.125862 && feature.properties['Indigenous'] <= 42.486207 ) {
                 return {
                 pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
                 opacity: 1,
@@ -353,11 +356,11 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(85,40,144,1.0)',
+                fillColor: 'rgba(67,25,111,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['Indigenous'] >= 19.440000 && feature.properties['Indigenous'] <= 25.723810 ) {
+            if (feature.properties['Indigenous'] >= 42.486207 && feature.properties['Indigenous'] <= 44.846552 ) {
                 return {
                 pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
                 opacity: 1,
@@ -368,11 +371,11 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(74,21,134,1.0)',
+                fillColor: 'rgba(57,12,103,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['Indigenous'] >= 25.723810 && feature.properties['Indigenous'] <= 47.206897 ) {
+            if (feature.properties['Indigenous'] >= 44.846552 && feature.properties['Indigenous'] <= 47.208 ) {
                 return {
                 pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
                 opacity: 1,
@@ -383,7 +386,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(63,0,125,1.0)',
+                fillColor: 'rgba(48,0,95,1.0)',
                 interactive: true,
             }
             }
@@ -402,6 +405,16 @@
         });
         bounds_group.addLayer(layer_IndigenousAveragebyElectorate202120BinsLite_0);
         map.addLayer(layer_IndigenousAveragebyElectorate202120BinsLite_0);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
         setBounds();
         resetLabels([layer_IndigenousAveragebyElectorate202120BinsLite_0]);
         map.on("zoomend", function(){
