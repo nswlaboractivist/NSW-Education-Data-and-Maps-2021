@@ -1,0 +1,1822 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+        <style>
+        #map {
+            width: 1095px;
+            height: 642px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+        <script src="data/IndigenousAveragebyElectorate202120BinsLite_0.js"></script>
+        <script src="data/AverageLBOTEbyNSWElectorate2021Lite_1.js"></script>
+        <script src="data/AverageICSEAbyNSWElectorate2021Lite_2.js"></script>
+        <script src="data/Vacanciesper100FTEStudents202120Bins_3.js"></script>
+        <script src="data/PercentageofSchoolswithVacancies202120Bins_4.js"></script>
+        <script>
+        var highlightLayer;
+        function highlightFeature(e) {
+            highlightLayer = e.target;
+
+            if (e.target.feature.geometry.type === 'LineString') {
+              highlightLayer.setStyle({
+                color: '#ffff00',
+              });
+            } else {
+              highlightLayer.setStyle({
+                fillColor: '#ffff00',
+                fillOpacity: 1
+              });
+            }
+            highlightLayer.openPopup();
+        }
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        })
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+            if (bounds_group.getLayers().length) {
+                map.fitBounds(bounds_group.getBounds());
+            }
+            map.setMaxBounds(map.getBounds());
+        }
+        function pop_IndigenousAveragebyElectorate202120BinsLite_0(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>NSW Electorate</strong><br />' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Average Indigenous Student %</th>\
+                        <td>' + (feature.properties['Indigenous'] !== null ? autolinker.link(feature.properties['Indigenous'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_IndigenousAveragebyElectorate202120BinsLite_0_0(feature) {
+            if (feature.properties['Indigenous'] >= 0.000000 && feature.properties['Indigenous'] <= 2.360345 ) {
+                return {
+                pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(237,235,244,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Indigenous'] >= 2.360345 && feature.properties['Indigenous'] <= 4.720690 ) {
+                return {
+                pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,223,236,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Indigenous'] >= 4.720690 && feature.properties['Indigenous'] <= 7.081034 ) {
+                return {
+                pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(217,210,228,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Indigenous'] >= 7.081034 && feature.properties['Indigenous'] <= 9.441379 ) {
+                return {
+                pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(207,198,220,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Indigenous'] >= 9.441379 && feature.properties['Indigenous'] <= 11.801724 ) {
+                return {
+                pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(197,186,213,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Indigenous'] >= 11.801724 && feature.properties['Indigenous'] <= 14.162069 ) {
+                return {
+                pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(187,173,205,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Indigenous'] >= 14.162069 && feature.properties['Indigenous'] <= 16.522414 ) {
+                return {
+                pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(177,161,197,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Indigenous'] >= 16.522414 && feature.properties['Indigenous'] <= 18.882759 ) {
+                return {
+                pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(167,148,189,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Indigenous'] >= 18.882759 && feature.properties['Indigenous'] <= 21.243103 ) {
+                return {
+                pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(157,136,181,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Indigenous'] >= 21.243103 && feature.properties['Indigenous'] <= 23.603448 ) {
+                return {
+                pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(147,124,173,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Indigenous'] >= 23.603448 && feature.properties['Indigenous'] <= 25.963793 ) {
+                return {
+                pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(137,111,166,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Indigenous'] >= 25.963793 && feature.properties['Indigenous'] <= 28.324138 ) {
+                return {
+                pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(127,99,158,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Indigenous'] >= 28.324138 && feature.properties['Indigenous'] <= 30.684483 ) {
+                return {
+                pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(117,87,150,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Indigenous'] >= 30.684483 && feature.properties['Indigenous'] <= 33.044828 ) {
+                return {
+                pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(107,74,142,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Indigenous'] >= 33.044828 && feature.properties['Indigenous'] <= 35.405172 ) {
+                return {
+                pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(97,62,134,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Indigenous'] >= 35.405172 && feature.properties['Indigenous'] <= 37.765517 ) {
+                return {
+                pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(87,49,126,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Indigenous'] >= 37.765517 && feature.properties['Indigenous'] <= 40.125862 ) {
+                return {
+                pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(77,37,119,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Indigenous'] >= 40.125862 && feature.properties['Indigenous'] <= 42.486207 ) {
+                return {
+                pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(67,25,111,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Indigenous'] >= 42.486207 && feature.properties['Indigenous'] <= 44.846552 ) {
+                return {
+                pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(57,12,103,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Indigenous'] >= 44.846552 && feature.properties['Indigenous'] <= 47.3 ) {
+                return {
+                pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(48,0,95,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_IndigenousAveragebyElectorate202120BinsLite_0');
+        map.getPane('pane_IndigenousAveragebyElectorate202120BinsLite_0').style.zIndex = 400;
+        map.getPane('pane_IndigenousAveragebyElectorate202120BinsLite_0').style['mix-blend-mode'] = 'normal';
+        var layer_IndigenousAveragebyElectorate202120BinsLite_0 = new L.geoJson(json_IndigenousAveragebyElectorate202120BinsLite_0, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_IndigenousAveragebyElectorate202120BinsLite_0',
+            layerName: 'layer_IndigenousAveragebyElectorate202120BinsLite_0',
+            pane: 'pane_IndigenousAveragebyElectorate202120BinsLite_0',
+            onEachFeature: pop_IndigenousAveragebyElectorate202120BinsLite_0,
+            style: style_IndigenousAveragebyElectorate202120BinsLite_0_0,
+        });
+        bounds_group.addLayer(layer_IndigenousAveragebyElectorate202120BinsLite_0);
+        map.addLayer(layer_IndigenousAveragebyElectorate202120BinsLite_0);
+        function pop_AverageLBOTEbyNSWElectorate2021Lite_1(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>NSW Electorate</strong><br />' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Average LBOTE Student Percentage</th>\
+                        <td>' + (feature.properties['AVERAGE _2'] !== null ? autolinker.link(feature.properties['AVERAGE _2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_AverageLBOTEbyNSWElectorate2021Lite_1_0(feature) {
+            if (feature.properties['AVERAGE _2'] >= 2.461538 && feature.properties['AVERAGE _2'] <= 7.047552 ) {
+                return {
+                pane: 'pane_AverageLBOTEbyNSWElectorate2021Lite_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(247,251,255,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVERAGE _2'] >= 7.047552 && feature.properties['AVERAGE _2'] <= 11.633566 ) {
+                return {
+                pane: 'pane_AverageLBOTEbyNSWElectorate2021Lite_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(237,245,252,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVERAGE _2'] >= 11.633566 && feature.properties['AVERAGE _2'] <= 16.219580 ) {
+                return {
+                pane: 'pane_AverageLBOTEbyNSWElectorate2021Lite_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,238,249,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVERAGE _2'] >= 16.219580 && feature.properties['AVERAGE _2'] <= 20.805594 ) {
+                return {
+                pane: 'pane_AverageLBOTEbyNSWElectorate2021Lite_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(217,232,245,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVERAGE _2'] >= 20.805594 && feature.properties['AVERAGE _2'] <= 25.391608 ) {
+                return {
+                pane: 'pane_AverageLBOTEbyNSWElectorate2021Lite_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(207,225,242,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVERAGE _2'] >= 25.391608 && feature.properties['AVERAGE _2'] <= 29.977622 ) {
+                return {
+                pane: 'pane_AverageLBOTEbyNSWElectorate2021Lite_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(197,219,239,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVERAGE _2'] >= 29.977622 && feature.properties['AVERAGE _2'] <= 34.563636 ) {
+                return {
+                pane: 'pane_AverageLBOTEbyNSWElectorate2021Lite_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(181,212,233,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVERAGE _2'] >= 34.563636 && feature.properties['AVERAGE _2'] <= 39.149650 ) {
+                return {
+                pane: 'pane_AverageLBOTEbyNSWElectorate2021Lite_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(165,205,227,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVERAGE _2'] >= 39.149650 && feature.properties['AVERAGE _2'] <= 43.735664 ) {
+                return {
+                pane: 'pane_AverageLBOTEbyNSWElectorate2021Lite_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(146,195,222,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVERAGE _2'] >= 43.735664 && feature.properties['AVERAGE _2'] <= 48.321678 ) {
+                return {
+                pane: 'pane_AverageLBOTEbyNSWElectorate2021Lite_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(125,184,218,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVERAGE _2'] >= 48.321678 && feature.properties['AVERAGE _2'] <= 52.907692 ) {
+                return {
+                pane: 'pane_AverageLBOTEbyNSWElectorate2021Lite_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(105,173,213,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVERAGE _2'] >= 52.907692 && feature.properties['AVERAGE _2'] <= 57.493706 ) {
+                return {
+                pane: 'pane_AverageLBOTEbyNSWElectorate2021Lite_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(88,161,207,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVERAGE _2'] >= 57.493706 && feature.properties['AVERAGE _2'] <= 62.079720 ) {
+                return {
+                pane: 'pane_AverageLBOTEbyNSWElectorate2021Lite_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(72,150,200,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVERAGE _2'] >= 62.079720 && feature.properties['AVERAGE _2'] <= 66.665734 ) {
+                return {
+                pane: 'pane_AverageLBOTEbyNSWElectorate2021Lite_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(57,137,194,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVERAGE _2'] >= 66.665734 && feature.properties['AVERAGE _2'] <= 71.251748 ) {
+                return {
+                pane: 'pane_AverageLBOTEbyNSWElectorate2021Lite_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(44,124,187,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVERAGE _2'] >= 71.251748 && feature.properties['AVERAGE _2'] <= 75.837762 ) {
+                return {
+                pane: 'pane_AverageLBOTEbyNSWElectorate2021Lite_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(31,110,179,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVERAGE _2'] >= 75.837762 && feature.properties['AVERAGE _2'] <= 80.423776 ) {
+                return {
+                pane: 'pane_AverageLBOTEbyNSWElectorate2021Lite_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(20,96,168,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVERAGE _2'] >= 80.423776 && feature.properties['AVERAGE _2'] <= 85.009790 ) {
+                return {
+                pane: 'pane_AverageLBOTEbyNSWElectorate2021Lite_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(9,82,157,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVERAGE _2'] >= 85.009790 && feature.properties['AVERAGE _2'] <= 89.595804 ) {
+                return {
+                pane: 'pane_AverageLBOTEbyNSWElectorate2021Lite_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(8,65,133,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVERAGE _2'] >= 89.595804 && feature.properties['AVERAGE _2'] <= 94.181818 ) {
+                return {
+                pane: 'pane_AverageLBOTEbyNSWElectorate2021Lite_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(8,48,107,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_AverageLBOTEbyNSWElectorate2021Lite_1');
+        map.getPane('pane_AverageLBOTEbyNSWElectorate2021Lite_1').style.zIndex = 401;
+        map.getPane('pane_AverageLBOTEbyNSWElectorate2021Lite_1').style['mix-blend-mode'] = 'normal';
+        var layer_AverageLBOTEbyNSWElectorate2021Lite_1 = new L.geoJson(json_AverageLBOTEbyNSWElectorate2021Lite_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_AverageLBOTEbyNSWElectorate2021Lite_1',
+            layerName: 'layer_AverageLBOTEbyNSWElectorate2021Lite_1',
+            pane: 'pane_AverageLBOTEbyNSWElectorate2021Lite_1',
+            onEachFeature: pop_AverageLBOTEbyNSWElectorate2021Lite_1,
+            style: style_AverageLBOTEbyNSWElectorate2021Lite_1_0,
+        });
+        bounds_group.addLayer(layer_AverageLBOTEbyNSWElectorate2021Lite_1);
+        map.addLayer(layer_AverageLBOTEbyNSWElectorate2021Lite_1);
+        function pop_AverageICSEAbyNSWElectorate2021Lite_2(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>NSW Electorate</strong><br />' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Average ICSEA Score</th>\
+                        <td>' + (feature.properties['AVG_ICSEA'] !== null ? autolinker.link(feature.properties['AVG_ICSEA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_AverageICSEAbyNSWElectorate2021Lite_2_0(feature) {
+            if (feature.properties['AVG_ICSEA'] >= 851.588235 && feature.properties['AVG_ICSEA'] <= 867.069935 ) {
+                return {
+                pane: 'pane_AverageICSEAbyNSWElectorate2021Lite_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(215,25,28,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVG_ICSEA'] >= 867.069935 && feature.properties['AVG_ICSEA'] <= 882.551634 ) {
+                return {
+                pane: 'pane_AverageICSEAbyNSWElectorate2021Lite_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(223,56,43,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVG_ICSEA'] >= 882.551634 && feature.properties['AVG_ICSEA'] <= 898.033333 ) {
+                return {
+                pane: 'pane_AverageICSEAbyNSWElectorate2021Lite_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(231,88,57,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVG_ICSEA'] >= 898.033333 && feature.properties['AVG_ICSEA'] <= 913.515033 ) {
+                return {
+                pane: 'pane_AverageICSEAbyNSWElectorate2021Lite_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(239,119,72,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVG_ICSEA'] >= 913.515033 && feature.properties['AVG_ICSEA'] <= 928.996732 ) {
+                return {
+                pane: 'pane_AverageICSEAbyNSWElectorate2021Lite_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(247,150,86,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVG_ICSEA'] >= 928.996732 && feature.properties['AVG_ICSEA'] <= 944.478431 ) {
+                return {
+                pane: 'pane_AverageICSEAbyNSWElectorate2021Lite_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(253,178,102,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVG_ICSEA'] >= 944.478431 && feature.properties['AVG_ICSEA'] <= 959.960131 ) {
+                return {
+                pane: 'pane_AverageICSEAbyNSWElectorate2021Lite_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(254,195,122,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVG_ICSEA'] >= 959.960131 && feature.properties['AVG_ICSEA'] <= 975.441830 ) {
+                return {
+                pane: 'pane_AverageICSEAbyNSWElectorate2021Lite_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(254,212,142,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVG_ICSEA'] >= 975.441830 && feature.properties['AVG_ICSEA'] <= 990.923529 ) {
+                return {
+                pane: 'pane_AverageICSEAbyNSWElectorate2021Lite_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(254,229,162,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVG_ICSEA'] >= 990.923529 && feature.properties['AVG_ICSEA'] <= 1006.405229 ) {
+                return {
+                pane: 'pane_AverageICSEAbyNSWElectorate2021Lite_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,246,182,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVG_ICSEA'] >= 1006.405229 && feature.properties['AVG_ICSEA'] <= 1021.886928 ) {
+                return {
+                pane: 'pane_AverageICSEAbyNSWElectorate2021Lite_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(246,251,183,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVG_ICSEA'] >= 1021.886928 && feature.properties['AVG_ICSEA'] <= 1037.368627 ) {
+                return {
+                pane: 'pane_AverageICSEAbyNSWElectorate2021Lite_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,243,165,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVG_ICSEA'] >= 1037.368627 && feature.properties['AVG_ICSEA'] <= 1052.850327 ) {
+                return {
+                pane: 'pane_AverageICSEAbyNSWElectorate2021Lite_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(208,235,147,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVG_ICSEA'] >= 1052.850327 && feature.properties['AVG_ICSEA'] <= 1068.332026 ) {
+                return {
+                pane: 'pane_AverageICSEAbyNSWElectorate2021Lite_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(189,227,129,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVG_ICSEA'] >= 1068.332026 && feature.properties['AVG_ICSEA'] <= 1083.813725 ) {
+                return {
+                pane: 'pane_AverageICSEAbyNSWElectorate2021Lite_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(171,219,111,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVG_ICSEA'] >= 1083.813725 && feature.properties['AVG_ICSEA'] <= 1099.295425 ) {
+                return {
+                pane: 'pane_AverageICSEAbyNSWElectorate2021Lite_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(144,206,100,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVG_ICSEA'] >= 1099.295425 && feature.properties['AVG_ICSEA'] <= 1114.777124 ) {
+                return {
+                pane: 'pane_AverageICSEAbyNSWElectorate2021Lite_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(114,192,91,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVG_ICSEA'] >= 1114.777124 && feature.properties['AVG_ICSEA'] <= 1130.258823 ) {
+                return {
+                pane: 'pane_AverageICSEAbyNSWElectorate2021Lite_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(85,178,82,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVG_ICSEA'] >= 1130.258823 && feature.properties['AVG_ICSEA'] <= 1145.740523 ) {
+                return {
+                pane: 'pane_AverageICSEAbyNSWElectorate2021Lite_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(55,164,74,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['AVG_ICSEA'] >= 1145.740523 && feature.properties['AVG_ICSEA'] <= 1161.222222 ) {
+                return {
+                pane: 'pane_AverageICSEAbyNSWElectorate2021Lite_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(26,150,65,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_AverageICSEAbyNSWElectorate2021Lite_2');
+        map.getPane('pane_AverageICSEAbyNSWElectorate2021Lite_2').style.zIndex = 402;
+        map.getPane('pane_AverageICSEAbyNSWElectorate2021Lite_2').style['mix-blend-mode'] = 'normal';
+        var layer_AverageICSEAbyNSWElectorate2021Lite_2 = new L.geoJson(json_AverageICSEAbyNSWElectorate2021Lite_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_AverageICSEAbyNSWElectorate2021Lite_2',
+            layerName: 'layer_AverageICSEAbyNSWElectorate2021Lite_2',
+            pane: 'pane_AverageICSEAbyNSWElectorate2021Lite_2',
+            onEachFeature: pop_AverageICSEAbyNSWElectorate2021Lite_2,
+            style: style_AverageICSEAbyNSWElectorate2021Lite_2_0,
+        });
+        bounds_group.addLayer(layer_AverageICSEAbyNSWElectorate2021Lite_2);
+        map.addLayer(layer_AverageICSEAbyNSWElectorate2021Lite_2);
+        function pop_Vacanciesper100FTEStudents202120Bins_3(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>NSW Electorate</strong><br />' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Total FTE'] !== null ? autolinker.link(feature.properties['Total FTE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Total Staf'] !== null ? autolinker.link(feature.properties['Total Staf'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Staff Vacancies per 100 FTE Students</th>\
+                        <td>' + (feature.properties['Staff Vaca'] !== null ? autolinker.link(feature.properties['Staff Vaca'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Vacanciesper100FTEStudents202120Bins_3_0(feature) {
+            if (feature.properties['Staff Vaca'] >= 0.079600 && feature.properties['Staff Vaca'] <= 0.154145 ) {
+                return {
+                pane: 'pane_Vacanciesper100FTEStudents202120Bins_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,178,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Staff Vaca'] >= 0.154145 && feature.properties['Staff Vaca'] <= 0.228690 ) {
+                return {
+                pane: 'pane_Vacanciesper100FTEStudents202120Bins_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,244,160,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Staff Vaca'] >= 0.228690 && feature.properties['Staff Vaca'] <= 0.303235 ) {
+                return {
+                pane: 'pane_Vacanciesper100FTEStudents202120Bins_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,234,142,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Staff Vaca'] >= 0.303235 && feature.properties['Staff Vaca'] <= 0.377780 ) {
+                return {
+                pane: 'pane_Vacanciesper100FTEStudents202120Bins_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(254,223,124,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Staff Vaca'] >= 0.377780 && feature.properties['Staff Vaca'] <= 0.452325 ) {
+                return {
+                pane: 'pane_Vacanciesper100FTEStudents202120Bins_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(254,212,106,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Staff Vaca'] >= 0.452325 && feature.properties['Staff Vaca'] <= 0.526870 ) {
+                return {
+                pane: 'pane_Vacanciesper100FTEStudents202120Bins_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(254,201,90,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Staff Vaca'] >= 0.526870 && feature.properties['Staff Vaca'] <= 0.601415 ) {
+                return {
+                pane: 'pane_Vacanciesper100FTEStudents202120Bins_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(254,187,84,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Staff Vaca'] >= 0.601415 && feature.properties['Staff Vaca'] <= 0.675960 ) {
+                return {
+                pane: 'pane_Vacanciesper100FTEStudents202120Bins_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(254,174,77,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Staff Vaca'] >= 0.675960 && feature.properties['Staff Vaca'] <= 0.750505 ) {
+                return {
+                pane: 'pane_Vacanciesper100FTEStudents202120Bins_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(253,161,70,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Staff Vaca'] >= 0.750505 && feature.properties['Staff Vaca'] <= 0.825050 ) {
+                return {
+                pane: 'pane_Vacanciesper100FTEStudents202120Bins_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(253,148,63,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Staff Vaca'] >= 0.825050 && feature.properties['Staff Vaca'] <= 0.899595 ) {
+                return {
+                pane: 'pane_Vacanciesper100FTEStudents202120Bins_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(252,132,57,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Staff Vaca'] >= 0.899595 && feature.properties['Staff Vaca'] <= 0.974140 ) {
+                return {
+                pane: 'pane_Vacanciesper100FTEStudents202120Bins_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(249,115,51,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Staff Vaca'] >= 0.974140 && feature.properties['Staff Vaca'] <= 1.048685 ) {
+                return {
+                pane: 'pane_Vacanciesper100FTEStudents202120Bins_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(246,98,45,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Staff Vaca'] >= 1.048685 && feature.properties['Staff Vaca'] <= 1.123230 ) {
+                return {
+                pane: 'pane_Vacanciesper100FTEStudents202120Bins_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(243,81,39,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Staff Vaca'] >= 1.123230 && feature.properties['Staff Vaca'] <= 1.197775 ) {
+                return {
+                pane: 'pane_Vacanciesper100FTEStudents202120Bins_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(241,63,33,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Staff Vaca'] >= 1.197775 && feature.properties['Staff Vaca'] <= 1.272320 ) {
+                return {
+                pane: 'pane_Vacanciesper100FTEStudents202120Bins_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(232,50,33,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Staff Vaca'] >= 1.272320 && feature.properties['Staff Vaca'] <= 1.346865 ) {
+                return {
+                pane: 'pane_Vacanciesper100FTEStudents202120Bins_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(221,37,34,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Staff Vaca'] >= 1.346865 && feature.properties['Staff Vaca'] <= 1.421410 ) {
+                return {
+                pane: 'pane_Vacanciesper100FTEStudents202120Bins_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(210,25,35,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Staff Vaca'] >= 1.421410 && feature.properties['Staff Vaca'] <= 1.495955 ) {
+                return {
+                pane: 'pane_Vacanciesper100FTEStudents202120Bins_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(200,12,37,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Staff Vaca'] >= 1.495955 && feature.properties['Staff Vaca'] <= 1.570500 ) {
+                return {
+                pane: 'pane_Vacanciesper100FTEStudents202120Bins_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(189,0,38,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_Vacanciesper100FTEStudents202120Bins_3');
+        map.getPane('pane_Vacanciesper100FTEStudents202120Bins_3').style.zIndex = 403;
+        map.getPane('pane_Vacanciesper100FTEStudents202120Bins_3').style['mix-blend-mode'] = 'normal';
+        var layer_Vacanciesper100FTEStudents202120Bins_3 = new L.geoJson(json_Vacanciesper100FTEStudents202120Bins_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Vacanciesper100FTEStudents202120Bins_3',
+            layerName: 'layer_Vacanciesper100FTEStudents202120Bins_3',
+            pane: 'pane_Vacanciesper100FTEStudents202120Bins_3',
+            onEachFeature: pop_Vacanciesper100FTEStudents202120Bins_3,
+            style: style_Vacanciesper100FTEStudents202120Bins_3_0,
+        });
+        bounds_group.addLayer(layer_Vacanciesper100FTEStudents202120Bins_3);
+        map.addLayer(layer_Vacanciesper100FTEStudents202120Bins_3);
+        function pop_PercentageofSchoolswithVacancies202120Bins_4(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>NSW Electorate</strong><br />' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Total Staf'] !== null ? autolinker.link(feature.properties['Total Staf'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Schools with Vacancies Percentage</th>\
+                        <td>' + (feature.properties['Percentage of Schools with Vacancies'] !== null ? autolinker.link(feature.properties['Percentage of Schools with Vacancies'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_PercentageofSchoolswithVacancies202120Bins_4_0(feature) {
+            if (feature.properties['Percentage of Schools with Vacancies'] >= 0.261000 && feature.properties['Percentage of Schools with Vacancies'] <= 0.297950 ) {
+                return {
+                pane: 'pane_PercentageofSchoolswithVacancies202120Bins_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,245,240,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Percentage of Schools with Vacancies'] >= 0.297950 && feature.properties['Percentage of Schools with Vacancies'] <= 0.334900 ) {
+                return {
+                pane: 'pane_PercentageofSchoolswithVacancies202120Bins_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,236,228,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Percentage of Schools with Vacancies'] >= 0.334900 && feature.properties['Percentage of Schools with Vacancies'] <= 0.371850 ) {
+                return {
+                pane: 'pane_PercentageofSchoolswithVacancies202120Bins_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(254,228,216,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Percentage of Schools with Vacancies'] >= 0.371850 && feature.properties['Percentage of Schools with Vacancies'] <= 0.408800 ) {
+                return {
+                pane: 'pane_PercentageofSchoolswithVacancies202120Bins_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(254,216,199,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Percentage of Schools with Vacancies'] >= 0.408800 && feature.properties['Percentage of Schools with Vacancies'] <= 0.445750 ) {
+                return {
+                pane: 'pane_PercentageofSchoolswithVacancies202120Bins_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(253,201,180,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Percentage of Schools with Vacancies'] >= 0.445750 && feature.properties['Percentage of Schools with Vacancies'] <= 0.482700 ) {
+                return {
+                pane: 'pane_PercentageofSchoolswithVacancies202120Bins_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(252,186,160,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Percentage of Schools with Vacancies'] >= 0.482700 && feature.properties['Percentage of Schools with Vacancies'] <= 0.519650 ) {
+                return {
+                pane: 'pane_PercentageofSchoolswithVacancies202120Bins_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(252,169,141,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Percentage of Schools with Vacancies'] >= 0.519650 && feature.properties['Percentage of Schools with Vacancies'] <= 0.556600 ) {
+                return {
+                pane: 'pane_PercentageofSchoolswithVacancies202120Bins_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(252,153,122,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Percentage of Schools with Vacancies'] >= 0.556600 && feature.properties['Percentage of Schools with Vacancies'] <= 0.593550 ) {
+                return {
+                pane: 'pane_PercentageofSchoolswithVacancies202120Bins_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(252,136,104,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Percentage of Schools with Vacancies'] >= 0.593550 && feature.properties['Percentage of Schools with Vacancies'] <= 0.630500 ) {
+                return {
+                pane: 'pane_PercentageofSchoolswithVacancies202120Bins_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(251,120,88,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Percentage of Schools with Vacancies'] >= 0.630500 && feature.properties['Percentage of Schools with Vacancies'] <= 0.667450 ) {
+                return {
+                pane: 'pane_PercentageofSchoolswithVacancies202120Bins_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(250,104,73,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Percentage of Schools with Vacancies'] >= 0.667450 && feature.properties['Percentage of Schools with Vacancies'] <= 0.704400 ) {
+                return {
+                pane: 'pane_PercentageofSchoolswithVacancies202120Bins_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(246,85,60,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Percentage of Schools with Vacancies'] >= 0.704400 && feature.properties['Percentage of Schools with Vacancies'] <= 0.741350 ) {
+                return {
+                pane: 'pane_PercentageofSchoolswithVacancies202120Bins_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(241,66,48,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Percentage of Schools with Vacancies'] >= 0.741350 && feature.properties['Percentage of Schools with Vacancies'] <= 0.778300 ) {
+                return {
+                pane: 'pane_PercentageofSchoolswithVacancies202120Bins_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(230,50,40,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Percentage of Schools with Vacancies'] >= 0.778300 && feature.properties['Percentage of Schools with Vacancies'] <= 0.815250 ) {
+                return {
+                pane: 'pane_PercentageofSchoolswithVacancies202120Bins_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(215,36,34,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Percentage of Schools with Vacancies'] >= 0.815250 && feature.properties['Percentage of Schools with Vacancies'] <= 0.852200 ) {
+                return {
+                pane: 'pane_PercentageofSchoolswithVacancies202120Bins_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(200,23,28,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Percentage of Schools with Vacancies'] >= 0.852200 && feature.properties['Percentage of Schools with Vacancies'] <= 0.889150 ) {
+                return {
+                pane: 'pane_PercentageofSchoolswithVacancies202120Bins_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(183,19,25,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Percentage of Schools with Vacancies'] >= 0.889150 && feature.properties['Percentage of Schools with Vacancies'] <= 0.926100 ) {
+                return {
+                pane: 'pane_PercentageofSchoolswithVacancies202120Bins_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(167,15,21,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Percentage of Schools with Vacancies'] >= 0.926100 && feature.properties['Percentage of Schools with Vacancies'] <= 0.963050 ) {
+                return {
+                pane: 'pane_PercentageofSchoolswithVacancies202120Bins_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(136,8,17,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Percentage of Schools with Vacancies'] >= 0.963050 && feature.properties['Percentage of Schools with Vacancies'] <= 1.000000 ) {
+                return {
+                pane: 'pane_PercentageofSchoolswithVacancies202120Bins_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(103,0,13,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_PercentageofSchoolswithVacancies202120Bins_4');
+        map.getPane('pane_PercentageofSchoolswithVacancies202120Bins_4').style.zIndex = 404;
+        map.getPane('pane_PercentageofSchoolswithVacancies202120Bins_4').style['mix-blend-mode'] = 'normal';
+        var layer_PercentageofSchoolswithVacancies202120Bins_4 = new L.geoJson(json_PercentageofSchoolswithVacancies202120Bins_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_PercentageofSchoolswithVacancies202120Bins_4',
+            layerName: 'layer_PercentageofSchoolswithVacancies202120Bins_4',
+            pane: 'pane_PercentageofSchoolswithVacancies202120Bins_4',
+            onEachFeature: pop_PercentageofSchoolswithVacancies202120Bins_4,
+            style: style_PercentageofSchoolswithVacancies202120Bins_4_0,
+        });
+        bounds_group.addLayer(layer_PercentageofSchoolswithVacancies202120Bins_4);
+        map.addLayer(layer_PercentageofSchoolswithVacancies202120Bins_4);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'Percentage of Schools with Vacancies (2021) [20 Bins]<br /><table><tr><td style="text-align: center;"><img src="legend/PercentageofSchoolswithVacancies202120Bins_4_026102980.png" /></td><td>0.261 - 0.298</td></tr><tr><td style="text-align: center;"><img src="legend/PercentageofSchoolswithVacancies202120Bins_4_029803351.png" /></td><td>0.298 - 0.335</td></tr><tr><td style="text-align: center;"><img src="legend/PercentageofSchoolswithVacancies202120Bins_4_033503722.png" /></td><td>0.335 - 0.372</td></tr><tr><td style="text-align: center;"><img src="legend/PercentageofSchoolswithVacancies202120Bins_4_037204093.png" /></td><td>0.372 - 0.409</td></tr><tr><td style="text-align: center;"><img src="legend/PercentageofSchoolswithVacancies202120Bins_4_040904464.png" /></td><td>0.409 - 0.446</td></tr><tr><td style="text-align: center;"><img src="legend/PercentageofSchoolswithVacancies202120Bins_4_044604835.png" /></td><td>0.446 - 0.483</td></tr><tr><td style="text-align: center;"><img src="legend/PercentageofSchoolswithVacancies202120Bins_4_04830526.png" /></td><td>0.483 - 0.52</td></tr><tr><td style="text-align: center;"><img src="legend/PercentageofSchoolswithVacancies202120Bins_4_05205577.png" /></td><td>0.52 - 0.557</td></tr><tr><td style="text-align: center;"><img src="legend/PercentageofSchoolswithVacancies202120Bins_4_055705948.png" /></td><td>0.557 - 0.594</td></tr><tr><td style="text-align: center;"><img src="legend/PercentageofSchoolswithVacancies202120Bins_4_059406319.png" /></td><td>0.594 - 0.631</td></tr><tr><td style="text-align: center;"><img src="legend/PercentageofSchoolswithVacancies202120Bins_4_0631066710.png" /></td><td>0.631 - 0.667</td></tr><tr><td style="text-align: center;"><img src="legend/PercentageofSchoolswithVacancies202120Bins_4_0667070411.png" /></td><td>0.667 - 0.704</td></tr><tr><td style="text-align: center;"><img src="legend/PercentageofSchoolswithVacancies202120Bins_4_0704074112.png" /></td><td>0.704 - 0.741</td></tr><tr><td style="text-align: center;"><img src="legend/PercentageofSchoolswithVacancies202120Bins_4_0741077813.png" /></td><td>0.741 - 0.778</td></tr><tr><td style="text-align: center;"><img src="legend/PercentageofSchoolswithVacancies202120Bins_4_0778081514.png" /></td><td>0.778 - 0.815</td></tr><tr><td style="text-align: center;"><img src="legend/PercentageofSchoolswithVacancies202120Bins_4_0815085215.png" /></td><td>0.815 - 0.852</td></tr><tr><td style="text-align: center;"><img src="legend/PercentageofSchoolswithVacancies202120Bins_4_0852088916.png" /></td><td>0.852 - 0.889</td></tr><tr><td style="text-align: center;"><img src="legend/PercentageofSchoolswithVacancies202120Bins_4_0889092617.png" /></td><td>0.889 - 0.926</td></tr><tr><td style="text-align: center;"><img src="legend/PercentageofSchoolswithVacancies202120Bins_4_0926096318.png" /></td><td>0.926 - 0.963</td></tr><tr><td style="text-align: center;"><img src="legend/PercentageofSchoolswithVacancies202120Bins_4_0963119.png" /></td><td>0.963 - 1</td></tr></table>': layer_PercentageofSchoolswithVacancies202120Bins_4,'Vacancies per 100 FTE Students (2021) [20 Bins]<br /><table><tr><td style="text-align: center;"><img src="legend/Vacanciesper100FTEStudents202120Bins_3_00801540.png" /></td><td>0.08 - 0.154</td></tr><tr><td style="text-align: center;"><img src="legend/Vacanciesper100FTEStudents202120Bins_3_015402291.png" /></td><td>0.154 - 0.229</td></tr><tr><td style="text-align: center;"><img src="legend/Vacanciesper100FTEStudents202120Bins_3_022903032.png" /></td><td>0.229 - 0.303</td></tr><tr><td style="text-align: center;"><img src="legend/Vacanciesper100FTEStudents202120Bins_3_030303783.png" /></td><td>0.303 - 0.378</td></tr><tr><td style="text-align: center;"><img src="legend/Vacanciesper100FTEStudents202120Bins_3_037804524.png" /></td><td>0.378 - 0.452</td></tr><tr><td style="text-align: center;"><img src="legend/Vacanciesper100FTEStudents202120Bins_3_045205275.png" /></td><td>0.452 - 0.527</td></tr><tr><td style="text-align: center;"><img src="legend/Vacanciesper100FTEStudents202120Bins_3_052706016.png" /></td><td>0.527 - 0.601</td></tr><tr><td style="text-align: center;"><img src="legend/Vacanciesper100FTEStudents202120Bins_3_060106767.png" /></td><td>0.601 - 0.676</td></tr><tr><td style="text-align: center;"><img src="legend/Vacanciesper100FTEStudents202120Bins_3_067607518.png" /></td><td>0.676 - 0.751</td></tr><tr><td style="text-align: center;"><img src="legend/Vacanciesper100FTEStudents202120Bins_3_075108259.png" /></td><td>0.751 - 0.825</td></tr><tr><td style="text-align: center;"><img src="legend/Vacanciesper100FTEStudents202120Bins_3_08250910.png" /></td><td>0.825 - 0.9</td></tr><tr><td style="text-align: center;"><img src="legend/Vacanciesper100FTEStudents202120Bins_3_09097411.png" /></td><td>0.9 - 0.974</td></tr><tr><td style="text-align: center;"><img src="legend/Vacanciesper100FTEStudents202120Bins_3_0974104912.png" /></td><td>0.974 - 1.049</td></tr><tr><td style="text-align: center;"><img src="legend/Vacanciesper100FTEStudents202120Bins_3_1049112313.png" /></td><td>1.049 - 1.123</td></tr><tr><td style="text-align: center;"><img src="legend/Vacanciesper100FTEStudents202120Bins_3_1123119814.png" /></td><td>1.123 - 1.198</td></tr><tr><td style="text-align: center;"><img src="legend/Vacanciesper100FTEStudents202120Bins_3_1198127215.png" /></td><td>1.198 - 1.272</td></tr><tr><td style="text-align: center;"><img src="legend/Vacanciesper100FTEStudents202120Bins_3_1272134716.png" /></td><td>1.272 - 1.347</td></tr><tr><td style="text-align: center;"><img src="legend/Vacanciesper100FTEStudents202120Bins_3_1347142117.png" /></td><td>1.347 - 1.421</td></tr><tr><td style="text-align: center;"><img src="legend/Vacanciesper100FTEStudents202120Bins_3_1421149618.png" /></td><td>1.421 - 1.496</td></tr><tr><td style="text-align: center;"><img src="legend/Vacanciesper100FTEStudents202120Bins_3_1496157119.png" /></td><td>1.496 - 1.571</td></tr></table>': layer_Vacanciesper100FTEStudents202120Bins_3,'Average ICSEA by NSW Electorate (2021) [Lite]<br /><table><tr><td style="text-align: center;"><img src="legend/AverageICSEAbyNSWElectorate2021Lite_2_8528670.png" /></td><td>852 - 867</td></tr><tr><td style="text-align: center;"><img src="legend/AverageICSEAbyNSWElectorate2021Lite_2_8678831.png" /></td><td>867 - 883</td></tr><tr><td style="text-align: center;"><img src="legend/AverageICSEAbyNSWElectorate2021Lite_2_8838982.png" /></td><td>883 - 898</td></tr><tr><td style="text-align: center;"><img src="legend/AverageICSEAbyNSWElectorate2021Lite_2_8989143.png" /></td><td>898 - 914</td></tr><tr><td style="text-align: center;"><img src="legend/AverageICSEAbyNSWElectorate2021Lite_2_9149294.png" /></td><td>914 - 929</td></tr><tr><td style="text-align: center;"><img src="legend/AverageICSEAbyNSWElectorate2021Lite_2_9299445.png" /></td><td>929 - 944</td></tr><tr><td style="text-align: center;"><img src="legend/AverageICSEAbyNSWElectorate2021Lite_2_9449606.png" /></td><td>944 - 960</td></tr><tr><td style="text-align: center;"><img src="legend/AverageICSEAbyNSWElectorate2021Lite_2_9609757.png" /></td><td>960 - 975</td></tr><tr><td style="text-align: center;"><img src="legend/AverageICSEAbyNSWElectorate2021Lite_2_9759918.png" /></td><td>975 - 991</td></tr><tr><td style="text-align: center;"><img src="legend/AverageICSEAbyNSWElectorate2021Lite_2_99110069.png" /></td><td>991 - 1006</td></tr><tr><td style="text-align: center;"><img src="legend/AverageICSEAbyNSWElectorate2021Lite_2_1006102210.png" /></td><td>1006 - 1022</td></tr><tr><td style="text-align: center;"><img src="legend/AverageICSEAbyNSWElectorate2021Lite_2_1022103711.png" /></td><td>1022 - 1037</td></tr><tr><td style="text-align: center;"><img src="legend/AverageICSEAbyNSWElectorate2021Lite_2_1037105312.png" /></td><td>1037 - 1053</td></tr><tr><td style="text-align: center;"><img src="legend/AverageICSEAbyNSWElectorate2021Lite_2_1053106813.png" /></td><td>1053 - 1068</td></tr><tr><td style="text-align: center;"><img src="legend/AverageICSEAbyNSWElectorate2021Lite_2_1068108414.png" /></td><td>1068 - 1084</td></tr><tr><td style="text-align: center;"><img src="legend/AverageICSEAbyNSWElectorate2021Lite_2_1084109915.png" /></td><td>1084 - 1099</td></tr><tr><td style="text-align: center;"><img src="legend/AverageICSEAbyNSWElectorate2021Lite_2_1099111516.png" /></td><td>1099 - 1115</td></tr><tr><td style="text-align: center;"><img src="legend/AverageICSEAbyNSWElectorate2021Lite_2_1115113017.png" /></td><td>1115 - 1130</td></tr><tr><td style="text-align: center;"><img src="legend/AverageICSEAbyNSWElectorate2021Lite_2_1130114618.png" /></td><td>1130 - 1146</td></tr><tr><td style="text-align: center;"><img src="legend/AverageICSEAbyNSWElectorate2021Lite_2_1146116119.png" /></td><td>1146 - 1161</td></tr></table>': layer_AverageICSEAbyNSWElectorate2021Lite_2,'Average LBOTE by NSW Electorate (2021) [Lite]<br /><table><tr><td style="text-align: center;"><img src="legend/AverageLBOTEbyNSWElectorate2021Lite_1_2570.png" /></td><td>2.5 - 7</td></tr><tr><td style="text-align: center;"><img src="legend/AverageLBOTEbyNSWElectorate2021Lite_1_71161.png" /></td><td>7 - 11.6</td></tr><tr><td style="text-align: center;"><img src="legend/AverageLBOTEbyNSWElectorate2021Lite_1_1161622.png" /></td><td>11.6 - 16.2</td></tr><tr><td style="text-align: center;"><img src="legend/AverageLBOTEbyNSWElectorate2021Lite_1_1622083.png" /></td><td>16.2 - 20.8</td></tr><tr><td style="text-align: center;"><img src="legend/AverageLBOTEbyNSWElectorate2021Lite_1_2082544.png" /></td><td>20.8 - 25.4</td></tr><tr><td style="text-align: center;"><img src="legend/AverageLBOTEbyNSWElectorate2021Lite_1_254305.png" /></td><td>25.4 - 30</td></tr><tr><td style="text-align: center;"><img src="legend/AverageLBOTEbyNSWElectorate2021Lite_1_303466.png" /></td><td>30 - 34.6</td></tr><tr><td style="text-align: center;"><img src="legend/AverageLBOTEbyNSWElectorate2021Lite_1_3463917.png" /></td><td>34.6 - 39.1</td></tr><tr><td style="text-align: center;"><img src="legend/AverageLBOTEbyNSWElectorate2021Lite_1_3914378.png" /></td><td>39.1 - 43.7</td></tr><tr><td style="text-align: center;"><img src="legend/AverageLBOTEbyNSWElectorate2021Lite_1_4374839.png" /></td><td>43.7 - 48.3</td></tr><tr><td style="text-align: center;"><img src="legend/AverageLBOTEbyNSWElectorate2021Lite_1_48352910.png" /></td><td>48.3 - 52.9</td></tr><tr><td style="text-align: center;"><img src="legend/AverageLBOTEbyNSWElectorate2021Lite_1_52957511.png" /></td><td>52.9 - 57.5</td></tr><tr><td style="text-align: center;"><img src="legend/AverageLBOTEbyNSWElectorate2021Lite_1_57562112.png" /></td><td>57.5 - 62.1</td></tr><tr><td style="text-align: center;"><img src="legend/AverageLBOTEbyNSWElectorate2021Lite_1_62166713.png" /></td><td>62.1 - 66.7</td></tr><tr><td style="text-align: center;"><img src="legend/AverageLBOTEbyNSWElectorate2021Lite_1_66771314.png" /></td><td>66.7 - 71.3</td></tr><tr><td style="text-align: center;"><img src="legend/AverageLBOTEbyNSWElectorate2021Lite_1_71375815.png" /></td><td>71.3 - 75.8</td></tr><tr><td style="text-align: center;"><img src="legend/AverageLBOTEbyNSWElectorate2021Lite_1_75880416.png" /></td><td>75.8 - 80.4</td></tr><tr><td style="text-align: center;"><img src="legend/AverageLBOTEbyNSWElectorate2021Lite_1_8048517.png" /></td><td>80.4 - 85</td></tr><tr><td style="text-align: center;"><img src="legend/AverageLBOTEbyNSWElectorate2021Lite_1_8589618.png" /></td><td>85 - 89.6</td></tr><tr><td style="text-align: center;"><img src="legend/AverageLBOTEbyNSWElectorate2021Lite_1_89694219.png" /></td><td>89.6 - 94.2</td></tr></table>': layer_AverageLBOTEbyNSWElectorate2021Lite_1,'Indigenous Average by Electorate (2021) [20 Bins] [Lite]<br /><table><tr><td style="text-align: center;"><img src="legend/IndigenousAveragebyElectorate202120BinsLite_0_00240.png" /></td><td>0.0 - 2.4</td></tr><tr><td style="text-align: center;"><img src="legend/IndigenousAveragebyElectorate202120BinsLite_0_24471.png" /></td><td>2.4 - 4.7</td></tr><tr><td style="text-align: center;"><img src="legend/IndigenousAveragebyElectorate202120BinsLite_0_47712.png" /></td><td>4.7 - 7.1</td></tr><tr><td style="text-align: center;"><img src="legend/IndigenousAveragebyElectorate202120BinsLite_0_71943.png" /></td><td>7.1 - 9.4</td></tr><tr><td style="text-align: center;"><img src="legend/IndigenousAveragebyElectorate202120BinsLite_0_941184.png" /></td><td>9.4 - 11.8</td></tr><tr><td style="text-align: center;"><img src="legend/IndigenousAveragebyElectorate202120BinsLite_0_1181425.png" /></td><td>11.8 - 14.2</td></tr><tr><td style="text-align: center;"><img src="legend/IndigenousAveragebyElectorate202120BinsLite_0_1421656.png" /></td><td>14.2 - 16.5</td></tr><tr><td style="text-align: center;"><img src="legend/IndigenousAveragebyElectorate202120BinsLite_0_1651897.png" /></td><td>16.5 - 18.9</td></tr><tr><td style="text-align: center;"><img src="legend/IndigenousAveragebyElectorate202120BinsLite_0_1892128.png" /></td><td>18.9 - 21.2</td></tr><tr><td style="text-align: center;"><img src="legend/IndigenousAveragebyElectorate202120BinsLite_0_2122369.png" /></td><td>21.2 - 23.6</td></tr><tr><td style="text-align: center;"><img src="legend/IndigenousAveragebyElectorate202120BinsLite_0_23626010.png" /></td><td>23.6 - 26.0</td></tr><tr><td style="text-align: center;"><img src="legend/IndigenousAveragebyElectorate202120BinsLite_0_26028311.png" /></td><td>26.0 - 28.3</td></tr><tr><td style="text-align: center;"><img src="legend/IndigenousAveragebyElectorate202120BinsLite_0_28330712.png" /></td><td>28.3 - 30.7</td></tr><tr><td style="text-align: center;"><img src="legend/IndigenousAveragebyElectorate202120BinsLite_0_30733013.png" /></td><td>30.7 - 33.0</td></tr><tr><td style="text-align: center;"><img src="legend/IndigenousAveragebyElectorate202120BinsLite_0_33035414.png" /></td><td>33.0 - 35.4</td></tr><tr><td style="text-align: center;"><img src="legend/IndigenousAveragebyElectorate202120BinsLite_0_35437815.png" /></td><td>35.4 - 37.8</td></tr><tr><td style="text-align: center;"><img src="legend/IndigenousAveragebyElectorate202120BinsLite_0_37840116.png" /></td><td>37.8 - 40.1</td></tr><tr><td style="text-align: center;"><img src="legend/IndigenousAveragebyElectorate202120BinsLite_0_40142517.png" /></td><td>40.1 - 42.5</td></tr><tr><td style="text-align: center;"><img src="legend/IndigenousAveragebyElectorate202120BinsLite_0_42544818.png" /></td><td>42.5 - 44.8</td></tr><tr><td style="text-align: center;"><img src="legend/IndigenousAveragebyElectorate202120BinsLite_0_44847219.png" /></td><td>44.8 - 47.2</td></tr></table>': layer_IndigenousAveragebyElectorate202120BinsLite_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        resetLabels([layer_IndigenousAveragebyElectorate202120BinsLite_0,layer_AverageICSEAbyNSWElectorate2021Lite_2]);
+        map.on("zoomend", function(){
+            resetLabels([layer_IndigenousAveragebyElectorate202120BinsLite_0,layer_AverageICSEAbyNSWElectorate2021Lite_2]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_IndigenousAveragebyElectorate202120BinsLite_0,layer_AverageICSEAbyNSWElectorate2021Lite_2]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_IndigenousAveragebyElectorate202120BinsLite_0,layer_AverageICSEAbyNSWElectorate2021Lite_2]);
+        });
+        </script>
+    </body>
+</html>
