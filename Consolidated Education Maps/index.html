@@ -56,8 +56,8 @@
         }
         var map = L.map('map', {
             zoomControl:true, 
-            maxZoom:12, 
-            minZoom:9
+            maxZoom:14, 
+            minZoom:10
         });
         
         var hash = new L.Hash(map);
@@ -84,7 +84,7 @@
                         });
                     }
                 },
-                mouseover: highlightFeature,
+                click: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
